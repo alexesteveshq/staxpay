@@ -22,7 +22,7 @@
         'data/payment_provider_data.xml',
     ],
     'images': [
-        'static/description/banner.gif',
+        'static/description/banner.png',
     ],
     'price': 100,
     'currency': "EUR",
