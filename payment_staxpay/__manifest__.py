@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'StaxPay Payment Integration',
+    'name': 'StaxPay Payment Acquirer',
     'summary': 'Allow payments with Staxpay on website. (staxpay | stax payment | stax)',
     'description': 'Allow payments with Staxpay on website',
     'version': '17.0.1.0',
