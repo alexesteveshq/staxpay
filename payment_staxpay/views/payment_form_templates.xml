@@ -2,8 +2,33 @@
     <template id="inline_form">
         <script src="https://staxjs.staxpayments.com/stax.js"/>
         <div id="stax_payment_form">
+            <span>Card number</span>
             <div id="card-number" class="stax-input-container"></div>
+            <div class="expire-date">
+                <div>Expire year</div>
+                <input type="number" id="year" class="stax-input"/>
+            </div>
+            <div class="expire-date">
+                <div>Expire month</div>
+                <select id="month" class="stax-input">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+            <br/>
+            <span>Card CVV</span>
             <div id="card-cvv" class="stax-input-container"></div>
+            <input type="hidden" id="staxpay_public_key" t-att-value="provider_sudo.staxpay_public_key"/>
         </div>
     </template>
 

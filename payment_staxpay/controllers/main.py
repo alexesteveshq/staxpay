@@ -2,7 +2,6 @@ import logging
 
 from odoo import http
 from odoo.http import request, route
-from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -10,13 +9,27 @@ class StaxPaymentController(http.Controller):
 
     @route('/payment/staxpay/process', type='http', auth='public', methods=['POST'], csrf=False)
     def staxpay_process_transaction(self, **post):
+        request.env['payment.transaction'].sudo()._handle_notification_data(
+            'staxpay', {'reference': post.get('reference'), 'status': '200'})
         return request.redirect('/payment/status')
 
-    @http.route('/payment/staxpay/confirm', type='http', auth='public', methods=['POST'], csrf=False)
-    def staxpay_webhook(self, **data):
-        try:
-            request.env['payment.transaction'].sudo()._handle_notification_data('staxpay', data)
-            _logger.exception("staxpay payment confirmation received")
-        except ValidationError:  # Acknowledge the notification to avoid getting spammed
-            _logger.exception("unable to handle the notification data; skipping to acknowledge")
-        return ''
+    @route('/payment/staxpay/get_data', type='json', auth='public', csrf=False, cors='*')
+    def staxpay_process_transaction(self, **kwargs):
+        customer = request.env['res.partner'].sudo().search([('id', '=', kwargs.get('partner_id'))])
+        merchant_code = request.env['ir.config_parameter'].sudo().get_param('database.uuid')
+        data = {'merchant_code': merchant_code}
+        if customer:
+            if customer.phone and len(customer.phone) < 10:
+                return {'error': 'Phone number must be at least 10 numbers and include area code.'
+                                 ' Please configure the phone in your account to match the format'}
+            data.update({
+                'firstname': customer.firstname,
+                'lastname': customer.lastname,
+                'phone': customer.phone,
+                'address': customer.contact_address_complete,
+                'city': customer.city,
+                'state': customer.state_id.name,
+                'zip': customer.zip,
+                'country': customer.country_id.name,
+            })
+        return data

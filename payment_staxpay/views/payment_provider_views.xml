@@ -6,8 +6,7 @@
         <field name="arch" type="xml">
             <group name="provider_credentials" position="inside">
                 <group invisible="code != 'staxpay'">
-                    <field name="staxpay_public_key" required="code == 'staxpay' and state == 'enabled'"/>
-                    <field name="staxpay_secret_key" required="code == 'staxpay' and state == 'enabled'"/>
+                    <field name="staxpay_public_key" required="code == 'staxpay' and state != 'disabled'"/>
                 </group>
             </group>
         </field>
