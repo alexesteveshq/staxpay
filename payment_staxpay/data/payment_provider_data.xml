@@ -6,7 +6,7 @@
         <field name="image" type="base64" file="payment_staxpay/static/src/img/stax.jpg"/>
         <field name="support_tokenization">False</field>
         <field name="support_express_checkout">False</field>
-        <field name="support_refund"/>
+        <field name="support_refund">none</field>
     </record>
 
     <record id="account_payment_method_staxpay" model="account.payment.method">

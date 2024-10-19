@@ -2,7 +2,7 @@
 
 import { _t } from '@web/core/l10n/translation';
 import paymentForm from '@payment/js/payment_form';
-import { RPCError } from '@web/core/network/rpc_service';
+import { rpc, RPCError } from "@web/core/network/rpc";
 
 paymentForm.include({
 
@@ -49,7 +49,7 @@ paymentForm.include({
         const year = $(this.target).find('#year').val()
         const month = $(this.target).find('#month').val()
 
-        const data = this.rpc("/payment/staxpay/get_data", {partner_id: this.paymentContext.partnerId}).then((data) => {
+        const data = rpc("/payment/staxpay/get_data", {partner_id: this.paymentContext.partnerId}).then((data) => {
             if (data.error !== undefined){
                 this._displayErrorDialog(_t("Payment processing failed"), data.error);
                 this._enableButton();

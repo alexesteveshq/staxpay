@@ -5,11 +5,11 @@
     'name': 'StaxPay Payment Acquirer',
     'summary': 'Allow payments with Staxpay on website. (staxpay | stax payment | stax)',
     'description': 'Allow payments with Staxpay on website',
-    'version': '17.0.1.0',
+    'version': '18.0.1.0',
     'category': 'Accounting/Website',
     'author': 'Visionee',
     'license': 'OPL-1',
-    'depends': ['payment', 'partner_firstname'],
+    'depends': ['payment'],
     'assets': {
         'web.assets_frontend': [
             'payment_staxpay/static/src/js/payment_form.js',
