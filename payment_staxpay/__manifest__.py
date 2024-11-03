@@ -9,6 +9,7 @@
     'category': 'Accounting/Website',
     'author': 'Visionee',
     'license': 'OPL-1',
+    'website': 'https://visionee.net',
     'depends': ['payment', 'partner_firstname'],
     'assets': {
         'web.assets_frontend': [
