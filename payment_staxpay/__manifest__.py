@@ -8,6 +8,7 @@
     'version': '18.0.1.0',
     'category': 'Accounting/Website',
     'author': 'Visionee',
+    'website': 'https://visionee.net',
     'license': 'OPL-1',
     'depends': ['payment'],
     'assets': {
